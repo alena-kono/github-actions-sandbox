@@ -1,0 +1,23 @@
+name: CI
+
+
+on:
+  push:
+    branches: ['master', 'main']
+
+
+jobs:
+  wemake_linter:
+    runs_on: ubuntu-latest
+    steps: 
+      - name: Checkout code repository
+        uses: actions/checkout@v2
+          
+      - name: Set up python 3.9
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+
+      - name: wemake-python-styleguide
+        uses: wemake-services/wemake-python-styleguide@latest
+
