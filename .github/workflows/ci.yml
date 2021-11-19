@@ -20,6 +20,8 @@ jobs:
 
       - name: wemake-python-styleguide
         uses: wemake-services/wemake-python-styleguide@0.15.3
+        with:
+          path: './try-github-actions/'
 
       - name: Set up poetry
         uses: abatilo/actions-poetry@v2.0.0
