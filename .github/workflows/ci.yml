@@ -27,27 +27,24 @@ jobs:
         run: poetry install
 
   check_style:
-    setup:
-      runs-on: ubuntu-latest
-      steps:
-        - name: wemake-python-styleguide
-          uses: wemake-services/wemake-python-styleguide@0.15.3
-          with:
-            path: './try_github_actions/'
+    runs-on: ubuntu-latest
+    steps:
+      - name: wemake-python-styleguide
+        uses: wemake-services/wemake-python-styleguide@0.15.3
+        with:
+          path: './try_github_actions/'
 
   check_typing:
-    setup:
-      needs: setup
-      runs-on: ubuntu-latest
-      steps:
-        - name: Check mypy
-          run: poetry run mypy try_github_actions/
+    needs: setup
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check mypy
+        run: poetry run mypy try_github_actions/
 
   test:
-    setup:
-      needs: setup
-      runs-on: ubuntu-latest
-      steps:
-        - name: Run tests with pytest
-          run: poetry run pytest
+    needs: setup
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run tests with pytest
+        run: poetry run pytest
 
