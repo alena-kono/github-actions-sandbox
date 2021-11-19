@@ -1,5 +1,3 @@
-from try_github_actions import __version__
-
-
-def test_version():
-    assert __version__ == '0.1.0'
+def test_something_good():
+    simple_expression = 1 + 1
+    assert simple_expression == 2
