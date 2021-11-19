@@ -7,7 +7,7 @@ on:
 
 
 jobs:
-  wemake_linter:
+  setup:
     runs-on: ubuntu-latest
     steps: 
       - name: Checkout code repository
@@ -18,11 +18,6 @@ jobs:
         with:
           python-version: 3.9
 
-      - name: wemake-python-styleguide
-        uses: wemake-services/wemake-python-styleguide@0.15.3
-        with:
-          path: './try_github_actions/'
-
       - name: Set up poetry
         uses: abatilo/actions-poetry@v2.0.0
         with:
@@ -31,6 +26,28 @@ jobs:
       - name: Install dependencies
         run: poetry install
 
+  check_style:
+    setup:
+      runs-on: ubuntu-latest
+      steps:
+        - name: wemake-python-styleguide
+          uses: wemake-services/wemake-python-styleguide@0.15.3
+          with:
+            path: './try_github_actions/'
+
+  check_typing:
+    setup:
+      needs: setup
+      runs-on: ubuntu-latest
+      steps:
       - name: Check mypy
-        run: poetry run mypy try_github_actions/ 
+        run: poetry run mypy try_github_actions/
+
+    test:
+      setup:
+        needs: setup
+        runs-on: ubuntu-latest
+        steps:
+        - name: Run tests with pytest
+          run: poetry run pytest
 
