@@ -40,14 +40,14 @@ jobs:
       needs: setup
       runs-on: ubuntu-latest
       steps:
-      - name: Check mypy
-        run: poetry run mypy try_github_actions/
+        - name: Check mypy
+          run: poetry run mypy try_github_actions/
 
-    test:
-      setup:
-        needs: setup
-        runs-on: ubuntu-latest
-        steps:
+  test:
+    setup:
+      needs: setup
+      runs-on: ubuntu-latest
+      steps:
         - name: Run tests with pytest
           run: poetry run pytest
 
