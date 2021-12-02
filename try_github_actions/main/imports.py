@@ -16,8 +16,8 @@ def get_import_type() -> Tuple[str, str, str, str]:
         Import type.
     """
     return (
-        type(ResponseStatus),
-        type(TimeoutSec),
-        type(Urls),
-        type(UrlStatus),
+        str(type(ResponseStatus)),
+        str(type(TimeoutSec)),
+        str(type(Urls)),
+        str(type(UrlStatus)),
     )
