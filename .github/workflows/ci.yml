@@ -29,10 +29,8 @@ jobs:
   check_style:
     runs-on: ubuntu-latest
     steps:
-      - name: wemake-python-styleguide
-        uses: wemake-services/wemake-python-styleguide@0.15.3
-        with:
-          path: './try_github_actions/'
+      - name: Run flake8 with wemake-python-styleguide
+        run: poetry run flake8 try_github_actions/
 
   check_typing:
     needs: setup
