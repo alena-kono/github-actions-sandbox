@@ -27,6 +27,7 @@ jobs:
         run: poetry install
 
   check_style:
+    needs: setup
     runs-on: ubuntu-latest
     steps:
       - name: Run flake8 with wemake-python-styleguide
