@@ -26,24 +26,11 @@ jobs:
       - name: Install dependencies
         run: poetry install
 
-  check_style:
-    needs: setup
-    runs-on: ubuntu-latest
-    steps:
       - name: Run flake8 with wemake-python-styleguide
         run: poetry run flake8 try_github_actions/
 
-  check_typing:
-    needs: setup
-    runs-on: ubuntu-latest
-    steps:
       - name: Check mypy
         run: poetry run mypy try_github_actions/
 
-  test:
-    needs: setup
-    runs-on: ubuntu-latest
-    steps:
       - name: Run tests with pytest
         run: poetry run pytest
-
